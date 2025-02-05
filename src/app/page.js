@@ -1,101 +1,239 @@
-import Image from "next/image";
+// 'use client'; // This is necessary because we're using useEffect and interacting with the DOM
 
-export default function Home() {
+// import { useEffect } from 'react';
+// import Chart from 'chart.js/auto';
+
+// const page = () => {
+//   useEffect(() => {
+//     const ctx = document.getElementById('myChart').getContext('2d');
+//     const myChart = new Chart(ctx, {
+//       type: 'bar',
+//       data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//           label: '# of Votes',
+//           data: [12, 19, 3, 5, 2, 3],
+//           backgroundColor: [
+//             'rgba(255, 99, 132, 0.2)',
+//             'rgba(54, 162, 235, 0.2)',
+//             'rgba(255, 206, 86, 0.2)',
+//             'rgba(75, 192, 192, 0.2)',
+//             'rgba(153, 102, 255, 0.2)',
+//             'rgba(255, 159, 64, 0.2)'
+//           ],
+//           borderColor: [
+//             'rgba(255, 99, 132, 1)',
+//             'rgba(54, 162, 235, 1)',
+//             'rgba(255, 206, 86, 1)',
+//             'rgba(75, 192, 192, 1)',
+//             'rgba(153, 102, 255, 1)',
+//             'rgba(255, 159, 64, 1)'
+//           ],
+//           borderWidth: 1
+//         }]
+//       },
+//       options: {
+//         scales: {
+//           y: {
+//             beginAtZero: true
+//           }
+//         }
+//       }
+//     });
+
+//     return () => {
+//       myChart.destroy(); // Clean up the chart instance on component unmount
+//     };
+//   }, []);
+
+//   return (
+//     <div className="bg-gray-100 flex h-screen">
+//       {/* Left Navbar */}
+//       <div className="w-64 bg-gray-800 text-white p-4 fixed h-full overflow-y-auto">
+//         <h1 className="text-xl font-bold mb-4">CleverControl</h1>
+//         <ul>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Summary</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Users activity</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Screenshots</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Web pages visited</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Keyboard events</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Geolocation</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Events log</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Installed applications</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Reports</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Live viewing</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Webcam live</a></li>
+//           <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Media recordings</a></li>
+//         </ul>
+//       </div>
+
+//       {/* Right Content */}
+//       <div className="ml-64 p-4 flex-grow overflow-y-auto">
+//         <div className="flex justify-between items-center mb-4">
+//           <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+//             + Add new computer
+//           </button>
+//           <div className="flex space-x-4">
+//             <input type="date" className="border border-gray-300 rounded px-2 py-1" />
+//             <select className="border border-gray-300 rounded px-2 py-1">
+//               <option>All computers</option>
+//               <option>Computer 1</option>
+//               <option>Computer 2</option>
+//             </select>
+//             <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+//               Clear filter
+//             </button>
+//           </div>
+//         </div>
+//         <h1 className="text-2xl font-bold mb-4">Users activity</h1>
+//         <p className="mb-4">Average users activity in programs and sites</p>
+//         {/* User Activity Cards */}
+//         <div className="grid grid-cols-2 gap-4">
+//           <div className="bg-white p-4 rounded shadow">
+//             <div className="flex items-center mb-4">
+//               <img src="https://via.placeholder.com/50" alt="User Avatar" className="w-10 h-10 rounded mr-2" />
+//               <div>
+//                 <h2 className="font-bold">Jennifer Miller</h2>
+//                 <span>HR Manager</span>
+//               </div>
+//               <div className="ml-auto">Online</div>
+//             </div>
+//             <p>Start time: 05:50</p>
+//             <p>End time: 20:46</p>
+//             <p>Active time: 7h. 32m.(7h. 32m.)</p>
+//             <h2 className="text-2xl font-bold mt-4">100%</h2>
+//             <p>Productivity</p>
+//             {/* Add more details as needed */}
+//           </div>
+//           {/* Repeat for other users */}
+//         </div>
+//         {/* Chart.js Graphs */}
+//         <div className="mt-8">
+//           <canvas id="myChart" width="400" height="200"></canvas>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default page;
+
+'use client'; // This is necessary because we're using useEffect and interacting with the DOM
+
+import { useEffect } from 'react';
+import Chart from 'chart.js/auto';
+
+const DashboardPage = () => {
+  useEffect(() => {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    return () => {
+      myChart.destroy(); // Clean up the chart instance on component unmount
+    };
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="bg-gray-100 flex h-screen">
+      {/* Left Navbar */}
+      <div className="w-64 bg-gray-800 text-white p-4 fixed h-full overflow-y-auto">
+        <h1 className="text-xl font-bold mb-4">Glynac AI</h1>
+        <ul>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Summary</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Users activity</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Profile</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Authentication</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Notifications</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Subscription</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Events log</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Preferences</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Reports</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">History</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Account</a></li>
+          <li className="mb-2"><a href="#" className="block py-2 px-4 hover:bg-gray-700">Support</a></li>
+        </ul>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Right Content */}
+      <div className="ml-64 p-4 flex-grow overflow-y-auto">
+        <div className="flex justify-between items-center mb-4">
+          <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+            + Add new user
+          </button>
+          <div className="flex space-x-4">
+            <input type="date" className="border border-gray-300 rounded px-2 py-1" />
+            <select className="border border-gray-300 rounded px-2 py-1">
+              <option>All computers</option>
+              <option>Computer 1</option>
+              <option>Computer 2</option>
+            </select>
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              Clear filter
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <h1 className="text-2xl font-bold mb-4 text-gray-900">Users activity</h1> {/* Darker text */}
+        <p className="mb-4">Average users activity in programs and sites</p>
+        {/* User Activity Cards */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded shadow">
+            <div className="flex items-center mb-4">
+              <img src="https://via.placeholder.com/50" alt="User Avatar" className="w-10 h-10 rounded mr-2" />
+              <div>
+                <h2 className="font-bold text-gray-900">Placeholder Name</h2> {/* Darker text */}
+                <span className="text-gray-700">HR Manager</span> {/* Slightly darker text for role */}
+              </div>
+              <div className="ml-auto">Online</div>
+            </div>
+            <p className="font-bold text-gray-600" >Start time: 05:50</p>
+            <p className="font-bold text-gray-600">End time: 20:46</p>
+            <p className="font-bold text-gray-600">Active time: 7h. 32m.(7h. 32m.)</p>
+            <h2 className="text-2xl font-bold mt-4 text-gray-400">100%</h2>
+            <p className='text-gray-400'>Productivity</p>
+            {/* Add more details as needed */}
+          </div>
+          {/* Repeat for other users */}
+        </div>
+        {/* Chart.js Graphs */}
+        <div className="mt-8">
+          <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default DashboardPage;
